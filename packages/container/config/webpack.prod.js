@@ -3,7 +3,6 @@ const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPl
 const commonConfig = require("./webpack.common");
 const packageJson = require("../package.json");
 
-const domain = process.env.PRODUCTION_DOMAIN;
 const prodConfig = {
   mode: "production",
   output: {
@@ -13,7 +12,9 @@ const prodConfig = {
     new ModuleFederationPlugin({
       name: "container",
       remotes: {
-        marketing: `marketing@${domain}/marketing/remoteEntry.js`,
+        marketing: "marketing@./marketing/remoteEntry.js?v=" + Math.random(),
+        auth: "auth@./auth/remoteEntry.js?v=" + Math.random(),
+        dashboard: "dashboard@./dashboard/remoteEntry.js?v=" + Math.random(),
       },
       shared: packageJson.dependencies
     }),

@@ -12,10 +12,10 @@ const prodConfig = {
   plugins: [
     // Could be in webpack.common.js, sinse that in this case, it's the same basic configuration
     new ModuleFederationPlugin({
-      name: "marketing",
+      name: "auth",
       filename: "remoteEntry.js",
       exposes: {
-        "./MarketingApp": "./src/bootstrap",
+        "./AuthApp": "./src/bootstrap",
       },
       shared: packageJson.dependencies
     })
